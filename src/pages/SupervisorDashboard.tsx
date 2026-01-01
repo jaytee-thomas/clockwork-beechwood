@@ -146,7 +146,7 @@ export default function SupervisorDashboard({ user, onLogout }: any) {
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-beechwood-900">Shift Manager</h1>
+            <h1 className="text-2xl font-bold text-beechwood-900">ClockWork</h1>
             <p className="text-sm text-gray-600">Supervisor • {user.name}</p>
           </div>
           <button

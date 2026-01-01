@@ -1,7 +1,8 @@
 {
-  "name": "shift-manager-beechwood",
+  "name": "clockwork-beechwood",
   "version": "1.0.0",
-  "description": "Shift Manager - by Beechwood",
+  "description": "ClockWork by Beechwood - Professional workforce scheduling that runs like clockwork",
+  "private": true,
   "main": "server/index.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",

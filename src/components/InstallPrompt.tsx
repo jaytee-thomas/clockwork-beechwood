@@ -59,7 +59,7 @@ export default function InstallPrompt() {
                 <Download className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-gray-900">Install Shift Manager</h3>
+                <h3 className="font-bold text-gray-900">Install ClockWork</h3>
                 <p className="text-sm text-gray-600">by Beechwood</p>
               </div>
             </div>

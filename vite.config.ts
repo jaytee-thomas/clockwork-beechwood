@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon-*.png', 'vite.svg'],
       manifest: {
-        name: 'Shift Manager - by Beechwood',
-        short_name: 'Shift Manager',
-        description: 'Professional shift management for teams',
+        name: 'ClockWork - by Beechwood',
+        short_name: 'ClockWork',
+        description: 'Professional workforce scheduling that runs like clockwork',
         theme_color: '#a18072',
         background_color: '#f2e8e5',
         display: 'standalone',

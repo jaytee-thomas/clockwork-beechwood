@@ -1,77 +1,83 @@
 import { useState, useEffect } from 'react'
 import Login from './pages/Login'
 import EmployeeDashboard from './pages/EmployeeDashboard'
-import SupervisorDashboard from './pages/SupervisorDashboard'
+import TeamLeadDashboard from './pages/TeamLeadDashboard'
+import ManagerDashboard from './pages/ManagerDashboard'
 import InstallPrompt from './components/InstallPrompt'
-
-interface User {
-  id: number
-  name: string
-  email: string
-  role: 'employee' | 'supervisor'
-}
+import { ThemeProvider } from './contexts/ThemeContext'
 
 function App() {
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState<any>(null)
+  const [token, setToken] = useState<string | null>(null)
 
   useEffect(() => {
-    // Check for existing session
-    const token = localStorage.getItem('token')
-    const userData = localStorage.getItem('user')
-    
-    if (token && userData) {
+    console.log('App mounted')
+    const storedToken = localStorage.getItem('token')
+    const storedUser = localStorage.getItem('user')
+
+    if (storedToken && storedUser) {
       try {
-        const parsedUser = JSON.parse(userData)
+        const parsedUser = JSON.parse(storedUser)
+        setToken(storedToken)
         setUser(parsedUser)
+        console.log('User loaded from storage:', parsedUser)
       } catch (error) {
+        console.error('Error parsing user from storage:', error)
         localStorage.removeItem('token')
         localStorage.removeItem('user')
       }
+    } else {
+      console.log('No stored user/token, showing login')
     }
-    setLoading(false)
   }, [])
 
-  const handleLogin = (userData: User, token: string) => {
+  const handleLogin = (userData: any, userToken: string) => {
     setUser(userData)
-    localStorage.setItem('token', token)
+    setToken(userToken)
+    localStorage.setItem('token', userToken)
     localStorage.setItem('user', JSON.stringify(userData))
   }
 
   const handleLogout = () => {
     setUser(null)
+    setToken(null)
     localStorage.removeItem('token')
     localStorage.removeItem('user')
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-beechwood-50 flex items-center justify-center">
-        <div className="text-beechwood-700">Loading...</div>
-      </div>
-    )
-  }
-
-  if (!user) {
-    return (
-      <>
-        <Login onLogin={handleLogin} />
-        <InstallPrompt />
-      </>
-    )
-  }
-
   return (
-    <>
-      {user.role === 'supervisor' ? (
-        <SupervisorDashboard user={user} onLogout={handleLogout} />
+    <ThemeProvider>
+      {!user || !token ? (
+        <Login onLogin={handleLogin} />
+      ) : !user.role || !['manager', 'team_lead', 'employee'].includes(user.role) ? (
+        <div className="min-h-screen bg-beechwood-50 dark:bg-gray-900 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">Unknown Role</h1>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">Your account has an unrecognized role: {user.role || 'undefined'}</p>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-beechwood-600 hover:bg-beechwood-700 dark:bg-beechwood-700 dark:hover:bg-beechwood-600 text-white rounded-lg"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
       ) : (
-        <EmployeeDashboard user={user} onLogout={handleLogout} />
+        <>
+          <InstallPrompt />
+          {user.role === 'manager' && (
+            <ManagerDashboard user={user} onLogout={handleLogout} />
+          )}
+          {user.role === 'team_lead' && (
+            <TeamLeadDashboard user={user} onLogout={handleLogout} />
+          )}
+          {user.role === 'employee' && (
+            <EmployeeDashboard user={user} onLogout={handleLogout} />
+          )}
+        </>
       )}
-      <InstallPrompt />
-    </>
+    </ThemeProvider>
   )
 }
 
 export default App
-

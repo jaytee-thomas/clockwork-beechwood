@@ -1,6 +1,6 @@
-# Shift Manager - by Beechwood 📱
+# ClockWork - by Beechwood ⏰
 
-Professional shift management system for supervisors and employees - **available on web AND mobile!**
+Professional workforce scheduling that runs like clockwork - **available on web AND mobile!**
 
 ## ✨ Features
 
@@ -9,30 +9,48 @@ Professional shift management system for supervisors and employees - **available
 - 🗓️ Interactive calendar view
 - 🏖️ Request time off
 - ✅ Track shift status (pending/approved)
+- 🔥 Overtime shift notifications
+- 🚨 Call-in coverage system
 - 📱 Install as mobile app
 
-### Supervisor Dashboard
-- ➕ Create and manage shifts
-- ✓ Approve/reject shift claims
-- 📋 Manage time off requests
-- 📊 Analytics overview
-- 👥 Employee management
+### Team Lead Dashboard
+- ➕ Create and manage shifts for your team
+- ✓ First-level approval for shift claims
+- 📋 Manage time off requests from team members
+- 👥 View assigned employees
+- 📊 Team overview and analytics
+
+### Manager Dashboard
+- 🏢 Oversee all team leads and employees
+- ➕ Create shifts and assign to team leads
+- ✓ Final approval authority
+- 📋 Manage all time off requests
+- 👥 Team assignment and management
+- 📊 Department-wide analytics
 
 ### Mobile Features
 - 📲 Install on iOS and Android
-- 🔔 Push notifications (coming soon)
+- 🔔 Real-time notifications
 - ⚡ Works offline
 - 🎨 Native app experience
 - 🚀 Fast loading
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React + TypeScript + Tailwind CSS
+- **Frontend**: React 18 + TypeScript + Tailwind CSS
 - **Backend**: Node.js + Express
-- **Database**: SQLite
-- **Authentication**: JWT
+- **Database**: SQLite with better-sqlite3
+- **Authentication**: JWT + bcrypt
 - **PWA**: Service Workers + Web Manifest
 - **Mobile**: Progressive Web App (works on all devices!)
+
+## 🏢 3-Tier Hierarchy
+
+ClockWork features a complete organizational structure:
+
+- **Manager** → Oversees all team leads and employees, final approval authority
+- **Team Lead** → Manages assigned employees, first-level approvals
+- **Employee** → Claims shifts, requests time off, covers call-ins
 
 ## 🚀 Getting Started
 
@@ -79,7 +97,8 @@ The app uses Beechwood brand colors:
 npm run build
 ```
 
-## 🌟 Shift Manager - by Beechwood
+## 🌟 ClockWork - by Beechwood
 
-Push your limits. Build your empire. 💪
+Workforce scheduling that runs like clockwork. ⏰
 
+Built for precision. Designed for teams. Powered by Beechwood.
